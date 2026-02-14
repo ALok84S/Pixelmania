@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { BedDouble, User } from 'lucide-react';
 import { useHousing } from '../../../context/HousingContext';
-import { Listing, Bed, Room } from '../../../types'; // Add Listing import
-import { User, UserMinus, X } from 'lucide-react';
+import { Listing, Bed, Room } from '../../../types';
 import styles from './OccupancyGrid.module.css';
 
 interface OccupancyGridProps {
@@ -10,37 +10,34 @@ interface OccupancyGridProps {
 
 const OccupancyGrid: React.FC<OccupancyGridProps> = ({ listing }) => {
     const { students, updateBedStatus } = useHousing();
-    // Removed listings[0] hardcoding
-
-    const [selectedBed, setSelectedBed] = useState<{ bed: Bed; room: Room } | null>(null);
-    const [showModal, setShowModal] = useState(false);
+    const [selectedBed, setSelectedBed] = useState<{ roomId: string, bed: Bed } | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedStudentId, setSelectedStudentId] = useState('');
 
-    if (!listing) return <div>No property data available.</div>;
-
-    const handleBedClick = (bed: Bed, room: Room) => {
-        setSelectedBed({ bed, room });
-        setShowModal(true);
-        setSelectedStudentId('');
+    const handleBedClick = (roomId: string, bed: Bed) => {
+        setSelectedBed({ roomId, bed });
+        setIsModalOpen(true);
     };
 
     const handleAssign = () => {
-        if (!selectedBed || !selectedStudentId) return;
-        const studentName = students.find(s => s.id === selectedStudentId)?.name || 'Unknown';
-
-        updateBedStatus(listing.id, selectedBed.room.roomNumber, selectedBed.bed.id, 'occupied', studentName);
-        setShowModal(false);
-        setSelectedBed(null);
+        if (selectedBed && listing) {
+            const student = students.find(s => s.id === selectedStudentId);
+            updateBedStatus(listing.id, selectedBed.roomId, selectedBed.bed.id, 'occupied', student?.name);
+            setIsModalOpen(false);
+            setSelectedStudentId('');
+        }
     };
 
     const handleVacate = () => {
-        if (!selectedBed) return;
-        updateBedStatus(listing.id, selectedBed.room.roomNumber, selectedBed.bed.id, 'empty');
-        setShowModal(false);
-        setSelectedBed(null);
+        if (selectedBed && listing) {
+            updateBedStatus(listing.id, selectedBed.roomId, selectedBed.bed.id, 'empty');
+            setIsModalOpen(false);
+        }
     };
 
-    const availableStudents = students; // In real app, filter out already assigned students
+    if (!listing || !listing.floors) {
+        return <div className={styles.container}>Loading occupancy data...</div>;
+    }
 
     return (
         <div className={styles.container}>
@@ -51,20 +48,23 @@ const OccupancyGrid: React.FC<OccupancyGridProps> = ({ listing }) => {
                         {floor.rooms.map((room) => (
                             <div key={room.id} className={styles.roomCard}>
                                 <div className={styles.roomHeader}>
-                                    <span className={styles.roomNo}>{room.roomNumber}</span>
+                                    <span className={styles.roomNo}>Unit {room.roomNumber}</span>
                                     <span className={styles.roomType}>{room.type}</span>
                                 </div>
                                 <div className={styles.bedsGrid}>
                                     {room.beds.map((bed) => (
                                         <div
                                             key={bed.id}
-                                            className={`${styles.bed} ${bed.status === 'occupied' ? styles.occupied : styles.empty}`}
-                                            onClick={() => handleBedClick(bed, room)}
-                                            title={bed.status === 'occupied' ? bed.studentName : 'Empty'}
+                                            className={`${styles.bed} ${styles[bed.status]}`}
+                                            onClick={() => handleBedClick(room.id, bed)}
                                         >
-                                            {bed.status === 'occupied' ? <User size={16} /> : <div className={styles.emptyDot} />}
+                                            {bed.status === 'occupied' ? (
+                                                <User size={20} />
+                                            ) : (
+                                                <BedDouble size={20} />
+                                            )}
                                             <span className={styles.bedLabel}>
-                                                {bed.status === 'occupied' ? bed.studentName?.split(' ')[0] : 'Free'}
+                                                {bed.status === 'occupied' ? (bed.studentName || 'Occupied') : 'Vacant'}
                                             </span>
                                         </div>
                                     ))}
@@ -75,46 +75,38 @@ const OccupancyGrid: React.FC<OccupancyGridProps> = ({ listing }) => {
                 </div>
             ))}
 
-            {showModal && selectedBed && (
-                <div className={styles.modalOverlay}>
-                    <div className={styles.modalContent}>
+            {/* Modal */}
+            {isModalOpen && selectedBed && (
+                <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+                    <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
                         <div className={styles.modalHeader}>
-                            <h3>Manage Bed {selectedBed.room.roomNumber}-{selectedBed.bed.id.split('-').pop()}</h3>
-                            <button className={styles.closeBtn} onClick={() => setShowModal(false)}><X size={20} /></button>
+                            <h3>Manage Bed</h3>
+                            <button className={styles.closeBtn} onClick={() => setIsModalOpen(false)}>✕</button>
                         </div>
-
                         <div className={styles.modalBody}>
-                            <p>Type: {selectedBed.room.type}</p>
-                            <p>Status: <strong>{selectedBed.bed.status.toUpperCase()}</strong></p>
+                            <p><strong>Room:</strong> {selectedBed.bed.roomId}</p>
+                            <p><strong>Current Status:</strong> {selectedBed.bed.status}</p>
 
                             {selectedBed.bed.status === 'empty' ? (
-                                <div className={styles.assignSection}>
-                                    <label>Assign Student:</label>
+                                <>
                                     <select
+                                        className={styles.select}
                                         value={selectedStudentId}
                                         onChange={(e) => setSelectedStudentId(e.target.value)}
-                                        className={styles.select}
                                     >
-                                        <option value="">Select Student...</option>
-                                        {availableStudents.map(s => (
-                                            <option key={s.id} value={s.id}>{s.name}</option>
+                                        <option value="">Select Student</option>
+                                        {students.map(s => (
+                                            <option key={s.id} value={s.id}>{s.name} ({s.bio})</option>
                                         ))}
                                     </select>
-                                    <button
-                                        className={styles.assignBtn}
-                                        disabled={!selectedStudentId}
-                                        onClick={handleAssign}
-                                    >
+                                    <button className={styles.assignBtn} onClick={handleAssign}>
                                         Assign Bed
                                     </button>
-                                </div>
+                                </>
                             ) : (
-                                <div className={styles.vacateSection}>
-                                    <p>Occupant: {selectedBed.bed.studentName}</p>
-                                    <button className={styles.vacateBtn} onClick={handleVacate}>
-                                        <UserMinus size={16} /> Vacate Bed
-                                    </button>
-                                </div>
+                                <button className={styles.vacateBtn} onClick={handleVacate}>
+                                    Vacate Bed
+                                </button>
                             )}
                         </div>
                     </div>

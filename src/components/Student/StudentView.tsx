@@ -12,6 +12,8 @@ import DiscoverySection from './Sections/DiscoverySection';
 import SocialFooter from './Sections/SocialFooter';
 import styles from './StudentView.module.css';
 
+import logo from '../../assets/image.png';
+
 const StudentView: React.FC = () => {
     const { listings } = useHousing();
     const [activeTab, setActiveTab] = useState<'discover' | 'match' | 'booking'>('discover');
@@ -77,7 +79,10 @@ const StudentView: React.FC = () => {
         <div className={styles.container}>
             {activeTab !== 'discover' && (
                 <header className={styles.header}>
-                    <h1 className={styles.logo}>NIVASBUDDY</h1>
+                    <div className={styles.logo} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <img src={logo} alt="NivasBuddy" style={{ height: '40px' }} />
+                        <span>NIVASBUDDY</span>
+                    </div>
                     <nav className={styles.nav}>
                         <button className={`${styles.navBtn} ${activeTab === 'discover' ? styles.active : ''}`} onClick={() => setActiveTab('discover')}>Discover</button>
                         <button className={`${styles.navBtn} ${activeTab === 'match' ? styles.active : ''}`} onClick={() => setActiveTab('match')}>Match</button>

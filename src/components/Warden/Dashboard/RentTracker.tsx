@@ -12,7 +12,7 @@ const RentTracker: React.FC<RentTrackerProps> = ({ listing }) => {
     const { markStudentRentPaid } = useHousing();
     // Removed listings[0] hardcoding
 
-    if (!listing) return <div>Loading...</div>;
+    if (!listing || !listing.floors) return <div>Loading rent data...</div>;
 
     const currentMonth = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
 

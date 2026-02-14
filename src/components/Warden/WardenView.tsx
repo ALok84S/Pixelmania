@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { LayoutGrid, IndianRupee, Shield, UserCheck, AlertTriangle } from 'lucide-react';
 import { useHousing } from '../../context/HousingContext';
-// import OccupancyGrid from './Dashboard/OccupancyGrid';
-// import RentTracker from './Dashboard/RentTracker';
-// import SafetyControl from './Safety/SafetyControl';
+import OccupancyGrid from './Dashboard/OccupancyGrid';
+import RentTracker from './Dashboard/RentTracker';
+import SafetyControl from './Safety/SafetyControl';
 import styles from './WardenView.module.css';
 
+import logo from '../../assets/image.png';
+
 const WardenView: React.FC = () => {
-    // Debug: Check if context loads
-    const context = useHousing();
-    console.log("WardenView Context:", context);
-
-    const { listings, verifyApplication, approveApplication, students } = context;
-    // Handle potential undefined context values if any (though useHousing throws)
-    const applications = context.applications || [];
-
+    const { listings, verifyApplication, approveApplication, students, applications = [] } = useHousing();
     const [selectedListingId, setSelectedListingId] = useState<string>("all");
     const [activeTab, setActiveTab] = useState<'occupancy' | 'rent' | 'safety' | 'applications'>('occupancy');
 
@@ -27,10 +22,11 @@ const WardenView: React.FC = () => {
             {/* Header */}
             <div className={styles.header}>
                 <div className={styles.titleGroup}>
-                    <h2 className={styles.title}>Warden Control Panel (DEBUG MODE)</h2>
-                    <p className={styles.subtitle}>
-                        If you see this, the main view is working. Child components are disabled.
-                    </p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '8px' }}>
+                        <img src={logo} alt="Logo" style={{ height: '48px' }} />
+                        <h2 className={styles.title} style={{ margin: 0 }}>Warden Control Panel</h2>
+                    </div>
+                    <p className={styles.subtitle}></p>
                 </div>
 
                 <select
@@ -81,6 +77,18 @@ const WardenView: React.FC = () => {
                     <p>Listings Loaded: <strong>{listings.length}</strong></p>
                     <p>Applications Loaded: <strong>{applications.length}</strong></p>
                 </div>
+
+                {activeTab === 'occupancy' && filteredListings.map((listing) => (
+                    <OccupancyGrid key={listing.id} listing={listing} />
+                ))}
+
+                {activeTab === 'rent' && filteredListings.map((listing) => (
+                    <RentTracker key={listing.id} listing={listing} />
+                ))}
+
+                {activeTab === 'safety' && filteredListings.map((listing) => (
+                    <SafetyControl key={listing.id} initialListing={listing} />
+                ))}
 
                 {activeTab === 'applications' && filteredListings.map((listing) => {
                     const listingApps = applications

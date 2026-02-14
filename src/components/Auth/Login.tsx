@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { GraduationCap, ShieldCheck } from 'lucide-react';
 import styles from './Login.module.css';
 
+import logo from '../../assets/image.png';
+
 const Login: React.FC = () => {
     const navigate = useNavigate();
 
@@ -12,6 +14,9 @@ const Login: React.FC = () => {
             <div className={styles.decoration2}></div>
 
             <div className={styles.card}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+                    <img src={logo} alt="NivasBuddy Logo" style={{ height: '80px' }} />
+                </div>
                 <h1 className={styles.logo}>NIVASBUDDY</h1>
                 <p className={styles.subtitle}>Choose your role to continue</p>
 
