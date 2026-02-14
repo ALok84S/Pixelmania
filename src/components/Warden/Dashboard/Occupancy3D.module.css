@@ -1,0 +1,106 @@
+.sceneContainer {
+    perspective: 1000px;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.sceneContainer:active {
+    cursor: grabbing;
+}
+
+.room {
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+}
+
+/* Cube System */
+.cube {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    /* Optional: simpler rendering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid rgba(0,0,0,0.1); Debugging edges */
+}
+
+/* Standard shading */
+.faceFront {
+    transform: rotateY(0deg) translateZ(var(--half-depth));
+    filter: brightness(0.9);
+}
+
+.faceBack {
+    transform: rotateY(180deg) translateZ(var(--half-depth));
+    filter: brightness(0.7);
+}
+
+.faceRight {
+    transform: rotateY(90deg) translateZ(var(--half-width));
+    filter: brightness(0.8);
+}
+
+.faceLeft {
+    transform: rotateY(-90deg) translateZ(var(--half-width));
+    filter: brightness(0.8);
+}
+
+.faceTop {
+    transform: rotateX(90deg) translateZ(var(--half-height));
+    filter: brightness(1.1);
+}
+
+.faceBottom {
+    transform: rotateX(-90deg) translateZ(var(--half-height));
+    filter: brightness(0.5);
+}
+
+/* Voxel Vibes */
+.pixelEdge {
+    /* Optional: Border for cartoon look */
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Billboard Label */
+.billboard {
+    transform-style: preserve-3d;
+    /* Counter-rotation is handled in JS or specific CSS class if rotation is known */
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+/* Neon Glows */
+.glowGreen {
+    box-shadow: 0 0 15px 2px rgba(34, 197, 94, 0.6);
+}
+
+.glowRed {
+    box-shadow: 0 0 15px 2px rgba(239, 68, 68, 0.6);
+}
+
+/* Avatar Animation */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -10px, 0);
+    }
+}
+
+.avatar {
+    animation: float 2s ease-in-out infinite;
+}

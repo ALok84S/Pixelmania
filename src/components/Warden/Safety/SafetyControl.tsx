@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHousing } from '../../../context/HousingContext';
 import { SafetyFeature, SAFETY_WEIGHTS, Listing } from '../../../types';
-import { Shield, ShieldCheck, ShieldAlert } from 'lucide-react';
+import { Shield, ShieldCheck, ShieldAlert, CheckCircle } from 'lucide-react';
 import { calculateSafetyScore, getSafetyLevel } from '../../../utils/safety';
 import styles from './SafetyControl.module.css';
 
@@ -36,22 +36,29 @@ const SafetyControl: React.FC<SafetyControlProps> = ({ initialListing }) => {
         <div className={styles.container}>
             <h2 className={styles.title}>Safety Control Panel</h2>
 
-            <div className={styles.scoreCard} style={{ borderColor: safetyLevel.color }}>
+            {/* 3D Score Card */}
+            <div className={styles.scoreCard}>
                 <div className={styles.scoreHeader}>
                     <span className={styles.scoreLabel}>Current Safety Score</span>
-                    <span className={styles.scoreValue} style={{ color: safetyLevel.color }}>
+                    <span className={styles.scoreValue}>
                         {listing.safetyScore}/100
                     </span>
                 </div>
+
                 <div className={styles.progressBar}>
                     <div
                         className={styles.progressFill}
-                        style={{ width: `${listing.safetyScore}%`, backgroundColor: safetyLevel.color }}
+                        style={{ width: `${listing.safetyScore}%` }}
                     />
                 </div>
-                <p className={styles.scoreText}>{safetyLevel.label}</p>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#636e72', fontWeight: 600 }}>
+                    <ShieldCheck size={20} color={safetyLevel.color} />
+                    <span>Status: <span style={{ color: safetyLevel.color }}>{safetyLevel.label}</span></span>
+                </div>
             </div>
 
+            {/* 3D Feature Grid */}
             <div className={styles.featuresGrid}>
                 {Object.keys(SAFETY_WEIGHTS).map((key) => {
                     const feature = key as SafetyFeature;
@@ -64,11 +71,11 @@ const SafetyControl: React.FC<SafetyControlProps> = ({ initialListing }) => {
                             onClick={() => toggleFeature(feature)}
                         >
                             <div className={styles.featureIcon}>
-                                {isActive ? <ShieldCheck size={24} /> : <Shield size={24} />}
+                                {isActive ? <CheckCircle size={28} /> : <Shield size={28} />}
                             </div>
                             <div className={styles.featureInfo}>
                                 <h3>{feature}</h3>
-                                <p>Weight: +{SAFETY_WEIGHTS[feature]} pts</p>
+                                <p>+{SAFETY_WEIGHTS[feature]} pts</p>
                             </div>
                             <div className={styles.toggle}>
                                 {isActive ? 'Active' : 'Enable'}

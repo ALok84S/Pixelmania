@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LayoutGrid, IndianRupee, Shield, UserCheck, AlertTriangle } from 'lucide-react';
 import { useHousing } from '../../context/HousingContext';
 import OccupancyGrid from './Dashboard/OccupancyGrid';
+import Occupancy3D from './Dashboard/Occupancy3D';
 import RentTracker from './Dashboard/RentTracker';
 import SafetyControl from './Safety/SafetyControl';
 import styles from './WardenView.module.css';
@@ -9,7 +10,7 @@ import styles from './WardenView.module.css';
 import logo from '../../assets/image.png';
 
 const WardenView: React.FC = () => {
-    const { listings, verifyApplication, approveApplication, students, applications = [] } = useHousing();
+    const { listings, verifyApplication, approveApplication, rejectApplication, students, applications = [] } = useHousing();
     const [selectedListingId, setSelectedListingId] = useState<string>("all");
     const [activeTab, setActiveTab] = useState<'occupancy' | 'rent' | 'safety' | 'applications'>('occupancy');
 
@@ -71,16 +72,12 @@ const WardenView: React.FC = () => {
 
             {/* Content */}
             <div className={styles.grid}>
-                <div style={{ padding: 20, background: '#fee2e2', borderRadius: 12, border: '1px solid #ef4444', color: '#b91c1c' }}>
-                    <h3 style={{ display: 'flex', alignItems: 'center', gap: 8 }}><AlertTriangle /> Diagnostic Area</h3>
-                    <p>Active Tab: <strong>{activeTab}</strong></p>
-                    <p>Listings Loaded: <strong>{listings.length}</strong></p>
-                    <p>Applications Loaded: <strong>{applications.length}</strong></p>
-                </div>
 
-                {activeTab === 'occupancy' && filteredListings.map((listing) => (
-                    <OccupancyGrid key={listing.id} listing={listing} />
-                ))}
+                {activeTab === 'occupancy' && (
+                    <div style={{ height: '600px', width: '100%' }}>
+                        <Occupancy3D />
+                    </div>
+                )}
 
                 {activeTab === 'rent' && filteredListings.map((listing) => (
                     <RentTracker key={listing.id} listing={listing} />
@@ -96,12 +93,66 @@ const WardenView: React.FC = () => {
                         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
                     return (
-                        <div key={listing.id} className={styles.card}>
-                            <div className={styles.cardHeader}>
-                                <h3 className={styles.cardTitle}>{listing.title}</h3>
+                        <div key={listing.id} className={styles.saasCard}>
+                            <div className={styles.saasCardHeader}>
+                                <div>
+                                    <h3 className={styles.saasTitle}>{listing.title}</h3>
+                                    <p className={styles.saasSubtitle}>{listing.location.address}</p>
+                                </div>
+                                <span className={styles.saasSubtitle}>{listingApps.length} Applications</span>
                             </div>
-                            <div className={styles.cardContent}>
-                                <p>Applications found: {listingApps.length}</p>
+
+                            <div className={styles.saasContent}>
+                                {listingApps.length === 0 ? (
+                                    <div className={styles.emptyState}>No applications yet.</div>
+                                ) : (
+                                    <div className={styles.appList}>
+                                        {listingApps.map((app) => {
+                                            const student = students.find(s => s.id === app.studentId);
+                                            return (
+                                                <div key={app.id} className={styles.appItem}>
+                                                    <div className={styles.studentInfo}>
+                                                        <span className={styles.studentName}>{student?.name || 'Unknown Student'}</span>
+                                                        <span className={styles.studentDate}>Applied on {new Date(app.createdAt).toLocaleDateString()}</span>
+                                                    </div>
+
+                                                    <div className={styles.actions}>
+                                                        <span className={`${styles.statusPill} ${styles[app.status]}`}>
+                                                            {app.status}
+                                                        </span>
+
+                                                        {app.status === 'applied' && (
+                                                            <button
+                                                                className={`${styles.btnAction} ${styles.btnSecondary}`}
+                                                                onClick={() => verifyApplication(app.id)}
+                                                            >
+                                                                Verify
+                                                            </button>
+                                                        )}
+
+                                                        {app.status === 'verified' && (
+                                                            <>
+                                                                <button
+                                                                    className={`${styles.btnAction} ${styles.btnPrimary}`}
+                                                                    onClick={() => approveApplication(app.id)}
+                                                                >
+                                                                    Approve
+                                                                </button>
+                                                                <button
+                                                                    className={`${styles.btnAction} ${styles.btnSecondary}`}
+                                                                    style={{ color: '#ef4444', borderColor: '#fee2e2' }}
+                                                                    onClick={() => rejectApplication(app.id)}
+                                                                >
+                                                                    Reject
+                                                                </button>
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     );
