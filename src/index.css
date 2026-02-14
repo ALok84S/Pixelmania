@@ -1,0 +1,87 @@
+:root {
+  /* Purple 3D Theme */
+  --color-primary: #5B4DBC;
+  /* Deep Purple */
+  --color-primary-hover: #4c40a5;
+  --color-primary-light: #E0D4FC;
+  /* Light Purple Overlay */
+
+  --color-secondary: #FFB02E;
+  /* Vibrant Orange/Yellow */
+  --color-secondary-hover: #F59E0B;
+
+  --color-accent: #FF6B6B;
+  /* Soft Red/Pink for alerts */
+
+  --color-background: #F2F5F8;
+  /* Light Sky/Grey */
+  --color-bg-gradient: linear-gradient(180deg, #F2F5F8 0%, #E0D4FC 100%);
+
+  --color-surface: #ffffff;
+  --color-surface-glass: rgba(255, 255, 255, 0.9);
+
+  --color-text: #1E1B4B;
+  /* Dark Indigo for text */
+  --color-text-muted: #6B7280;
+  --color-border: #E0E7FF;
+
+  --rounded-lg: 20px;
+  --rounded-xl: 32px;
+  --rounded-2xl: 48px;
+
+  --shadow-sm: 0 2px 8px rgba(91, 77, 188, 0.08);
+  --shadow-md: 0 12px 24px -6px rgba(91, 77, 188, 0.12);
+  --shadow-lg: 0 20px 40px -4px rgba(91, 77, 188, 0.15);
+  --shadow-floating: 0 30px 60px -10px rgba(91, 77, 188, 0.25);
+
+  --font-sans: 'Outfit', 'Inter', sans-serif;
+  /* Rounder font if possible, else fallback */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  /* No borders by default */
+  outline: none;
+  font-family: inherit;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+  /* Bouncy transition */
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text);
+  margin-top: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-light);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}

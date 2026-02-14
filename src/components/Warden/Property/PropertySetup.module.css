@@ -1,0 +1,157 @@
+.container {
+    padding: 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.titleGroup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-text);
+}
+
+.icon {
+    color: var(--color-primary);
+}
+
+.saveBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.saveBtn:disabled {
+    background-color: var(--color-text-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.floorsList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.floorCard {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.floorHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.addRoomBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f1f5f9;
+    color: var(--color-text);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.deleteBtn {
+    padding: 8px;
+    color: #ef4444;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.roomsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.roomCard {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 12px;
+    background: #f8fafc;
+}
+
+.roomHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.roomType {
+    font-size: 0.8rem;
+    background: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.roomDetails {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.emptyRoomState {
+    color: var(--color-text-muted);
+    font-style: italic;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 24px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px dashed var(--color-border);
+}
+
+.addFloorBtn {
+    width: 100%;
+    padding: 24px;
+    border: 2px dashed var(--color-border);
+    background: transparent;
+    border-radius: 12px;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.2s;
+}
+
+.addFloorBtn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: #eff6ff;
+}

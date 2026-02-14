@@ -1,0 +1,77 @@
+.trustSection {
+    background-color: white;
+    padding: 32px 0;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #9ca3af;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.uniLogos,
+.pressLogos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition: opacity 0.3s;
+}
+
+.uniLogos:hover,
+.pressLogos:hover {
+    opacity: 1;
+    filter: none;
+}
+
+.logoText {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #4b5563;
+    font-family: serif;
+    /* Academic look */
+}
+
+.pressLogo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1f2937;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+.divider {
+    width: 100%;
+    max-width: 200px;
+    height: 1px;
+    background-color: #e5e7eb;
+}
+
+@media (min-width: 768px) {
+
+    .uniLogos,
+    .pressLogos {
+        gap: 48px;
+    }
+}

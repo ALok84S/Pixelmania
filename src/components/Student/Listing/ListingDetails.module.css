@@ -1,0 +1,331 @@
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.backBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 32px;
+    padding: 10px 20px;
+    border-radius: 99px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+.backBtn:hover {
+    transform: translateX(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.imageWrapper {
+    position: relative;
+    height: 480px;
+    border-radius: var(--rounded-2xl);
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-xl);
+}
+
+.mainImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.safetyBadge {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    padding: 10px 20px;
+    border-radius: 99px;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-lg);
+    font-size: 1rem;
+}
+
+.imageDots {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 16px;
+    border-radius: 99px;
+    backdrop-filter: blur(4px);
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.activeDot {
+    background: white;
+    transform: scale(1.2);
+}
+
+.header {
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 16px 0;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-muted);
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+.typeTag {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: var(--color-background);
+    border-radius: 99px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.section {
+    background: white;
+    padding: 32px;
+    border-radius: var(--rounded-2xl);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    margin-bottom: 32px;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+}
+
+.description {
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+}
+
+.amenitiesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.amenityItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-background);
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.rulesGrid {
+    display: grid;
+    gap: 16px;
+}
+
+.ruleItem {
+    padding: 16px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ruleItem:last-child {
+    border-bottom: none;
+}
+
+.ruleLabel {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.floorBlock {
+    margin-bottom: 32px;
+}
+
+.floorBlock h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.roomList {
+    display: grid;
+    gap: 16px;
+}
+
+.roomItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: var(--color-background);
+    border-radius: 16px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.roomItem:hover {
+    background: white;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.roomInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.roomNo {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--color-text);
+}
+
+.roomType {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.roomMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin: 0 32px;
+}
+
+.roomPrice {
+    font-weight: 800;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+}
+
+.selectRoomBtn {
+    padding: 12px 24px;
+    background-color: white;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.selectRoomBtn:hover {
+    background-color: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.sidebar {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+}
+
+.priceCard {
+    background: white;
+    padding: 40px;
+    border-radius: var(--rounded-2xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.priceHeader {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    letter-spacing: -0.05em;
+}
+
+.period {
+    color: var(--color-text-muted);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.bookBtn {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 10px 30px rgba(0, 86, 210, 0.3);
+}
+
+.bookBtn:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 86, 210, 0.4);
+}

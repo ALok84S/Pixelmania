@@ -1,0 +1,191 @@
+.card {
+    background: white;
+    border-radius: 32px;
+    /* Very rounded */
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-floating);
+    z-index: 10;
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 32px;
+    /* Inner radius matching outer */
+    margin: 8px;
+    /* Gap for "floating" image effect */
+    width: calc(100% - 16px);
+}
+
+.mainImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+}
+
+.badges {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.badge {
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(8px);
+}
+
+.badge.safety {
+    background: rgba(16, 185, 129, 0.9);
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.typeBadge {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--color-primary);
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 99px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    padding: 16px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.titleGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.location {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 4px 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--color-secondary);
+    color: white;
+    /* Orange bg, white text */
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.amenities {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.amenity {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 2px dashed var(--color-border);
+}
+
+.priceGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.oldPrice {
+    text-decoration: line-through;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-text);
+}
+
+.period {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.reserveBtn {
+    background: var(--color-text);
+    /* Black/Dark Button */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+.reserveBtn:hover {
+    transform: scale(1.05);
+    background: var(--color-primary);
+    box-shadow: 0 8px 20px rgba(91, 77, 188, 0.4);
+}

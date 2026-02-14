@@ -1,0 +1,160 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--color-background);
+    overflow-x: hidden;
+}
+
+.header {
+    height: 80px;
+    background: transparent;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    /* Float header */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav {
+    display: flex;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 12px;
+    border-radius: 99px;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+}
+
+.navBtn {
+    padding: 10px 24px;
+    border-radius: 99px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    background: transparent;
+}
+
+.navBtn:hover {
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+.navBtn.active {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(91, 77, 188, 0.4);
+}
+
+.main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+    padding-top: 100px;
+    /* Space for floating header */
+}
+
+.discoverContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.contentWrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.discoverGrid {
+    padding: 0 40px 80px 40px;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.sectionTitle {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.count {
+    font-size: 1rem;
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+    padding: 6px 14px;
+    border-radius: 99px;
+    vertical-align: middle;
+    margin-left: 12px;
+}
+
+.inlineNav {
+    display: flex;
+    gap: 12px;
+    background: white;
+    padding: 6px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+}
+
+.inlineNav button {
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.inlineNav button:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.matcherSection {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 16px;
+    }
+
+    .discoverGrid {
+        padding: 0 16px 80px 16px;
+    }
+
+    .sectionHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}

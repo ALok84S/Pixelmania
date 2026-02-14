@@ -1,0 +1,363 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* No gap because blocks have padding/bg */
+}
+
+.featureBlock {
+    padding: 100px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 968px) {
+    .featureBlock {
+        flex-direction: row;
+        gap: 120px;
+        padding: 120px 10%;
+        /* Percentage padding for responsiveness */
+    }
+
+    .featureBlock.reversed {
+        flex-direction: row-reverse;
+    }
+}
+
+/* Backgrounds */
+.purpleBg {
+    background: #fdf4ff;
+    /* Very light purple */
+    background: radial-gradient(circle at top right, #fdf4ff 0%, #ffffff 100%);
+}
+
+.contentSide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+.visualSide {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Icon Badges */
+.iconBadge {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+}
+
+.greenBadge {
+    background: #dcfce7;
+    color: #10b981;
+}
+
+.purpleBadge {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+.blueBadge {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.highlightPurple {
+    color: #9333ea;
+    position: relative;
+    display: inline-block;
+}
+
+.desc {
+    font-size: 1.25rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Buttons */
+.ctaBtn {
+    padding: 14px 32px;
+    border-radius: 99px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ctaBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.greenBtn {
+    background: #059669;
+    color: white;
+}
+
+.purpleBtn {
+    background: #9333ea;
+    color: white;
+}
+
+.blueBtn {
+    background: #2563eb;
+    color: white;
+}
+
+/* Lists & Tags */
+.checkList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.checkList li {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.checkIcon {
+    width: 24px;
+    height: 24px;
+    background: #dcfce7;
+    color: #059669;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tag {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 99px;
+    font-weight: 600;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Visuals */
+.safetyCard {
+    width: 320px;
+    height: 320px;
+    background: #111827;
+    border-radius: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.scoreCircle {
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 2px solid rgba(16, 185, 129, 0.5);
+    z-index: 2;
+}
+
+.scoreCircle span {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #34d399;
+}
+
+.scanningLine {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #34d399;
+    top: 0;
+    animation: scan 3s infinite linear;
+    box-shadow: 0 0 20px #34d399;
+}
+
+@keyframes scan {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+.matcherVisual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.profileCard {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.heartPulse {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Phone Mockup */
+.phoneMockup {
+    width: 300px;
+    height: 600px;
+    background: #1f2937;
+    border-radius: 40px;
+    border: 12px solid #1f2937;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    perspective: 1000px;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
+.notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 30px;
+    background: #1f2937;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    z-index: 10;
+}
+
+.appHeader {
+    height: 120px;
+    background: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-top: 20px;
+}
+
+.appCard {
+    margin: -30px 20px 0 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.appRow {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+}
+
+.appBtn {
+    flex: 1;
+    height: 80px;
+    background: #f3f4f6;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #4b5563;
+}

@@ -1,0 +1,206 @@
+.testimonialsSection {
+    padding: 80px 24px;
+    background: white;
+    text-align: center;
+    background: #fdf2f8;
+    /* Light pinkish bg for variety or use brand color tint */
+    background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 48px;
+    color: #111827;
+}
+
+.testimonialGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .testimonialGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.testimonialCard {
+    background: white;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+}
+
+.stars {
+    display: flex;
+    gap: 4px;
+}
+
+.quote {
+    font-size: 1.1rem;
+    color: #374151;
+    font-style: italic;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.author {
+    display: flex;
+    flex-direction: column;
+}
+
+.author strong {
+    color: #1f2937;
+    font-size: 1rem;
+}
+
+.author span {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+/* App Section */
+.appSection {
+    background: #1f2937;
+    color: white;
+    padding: 60px 40px;
+    border-radius: 32px;
+    margin: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .appSection {
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 80px 80px;
+    }
+}
+
+.appContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.appContent h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.storeButtons {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .storeButtons {
+        justify-content: flex-start;
+    }
+}
+
+.storeBtn {
+    background: white;
+    color: #1f2937;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.storeBtn:hover {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.qrCode {
+    width: 160px;
+    height: 160px;
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1f2937;
+}
+
+.qrPlaceholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* Main Footer */
+.mainFooter {
+    background: #111827;
+    color: #9ca3af;
+    padding: 60px 24px 24px 24px;
+}
+
+.footerLinks {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #374151;
+}
+
+@media (min-width: 768px) {
+    .footerLinks {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.col h4 {
+    color: white;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.col a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.col a:hover {
+    color: white;
+}
+
+.copy {
+    text-align: center;
+    padding-top: 24px;
+    font-size: 0.9rem;
+}

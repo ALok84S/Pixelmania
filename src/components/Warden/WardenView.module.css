@@ -1,0 +1,222 @@
+.container {
+    padding: 40px;
+    min-height: 100vh;
+    background: var(--color-background);
+    font-family: var(--font-sans);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.titleGroup h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0 0 8px 0;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.propertySelect {
+    padding: 14px 24px;
+    border-radius: 20px;
+    border: none;
+    background: white;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    outline: none;
+    min-width: 280px;
+}
+
+.tabsList {
+    display: flex;
+    gap: 16px;
+    padding: 8px;
+    background: white;
+    /* Glassy or White */
+    border-radius: 24px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 40px;
+}
+
+.tabTrigger {
+    padding: 12px 28px;
+    border-radius: 16px;
+    border: none;
+    background: transparent;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+.tabTrigger:hover {
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+.tabTrigger.active {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 8px 20px rgba(91, 77, 188, 0.3);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Card Styles */
+.card {
+    background: white;
+    border-radius: 32px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.cardHeader {
+    padding: 24px 32px;
+    border-bottom: 2px dashed var(--color-border);
+    background: linear-gradient(to right, #ffffff, #F9FAFB);
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+}
+
+.cardDesc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.cardContent {
+    padding: 32px;
+}
+
+.emptyState {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: 40px 0;
+}
+
+.appList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.appItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-radius: 20px;
+    background: var(--color-background);
+    border: 1px solid transparent;
+}
+
+.appItem:hover {
+    border-color: var(--color-primary-light);
+    background: white;
+}
+
+.studentInfo p:first-child {
+    font-weight: 700;
+    color: var(--color-text);
+    font-size: 1rem;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.badge {
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* Badge colors matching index.css vars or custom */
+.badge.applied {
+    background: #FEF3C7;
+    color: #D97706;
+}
+
+.badge.verified {
+    background: #DBEAFE;
+    color: #2563EB;
+}
+
+.badge.approved {
+    background: #DCFCE7;
+    color: #059669;
+}
+
+.badge.rejected {
+    background: #FEE2E2;
+    color: #DC2626;
+}
+
+.actionBtn {
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.btnOutline {
+    background: white;
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+}
+
+.btnOutline:hover:not(:disabled) {
+    border-color: var(--color-text);
+}
+
+.btnPrimary {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(91, 77, 188, 0.3);
+}
+
+.btnPrimary:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+    transform: scale(1.05);
+}
